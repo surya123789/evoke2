@@ -28,13 +28,13 @@ jobs:
       
   artifactoryUpload:
     name: Upload Trigger
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v1.2.0
     - name: publish to artifactory
       uses: advancedcsg-open/action-jfrog-cli@master
       with:
-        url: 'https://company.jfrog.io/'
+        url: 'http://34.125.30.106:8082/'
         credentials type: 'apikey'
         apikey: ${{ secrets.RT_APIKEY }}
         args: u "surya/" --recursive=true --build-name=myawesomeapp
