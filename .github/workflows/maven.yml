@@ -24,11 +24,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn package
- action "Step2 - Upload" {
- uses = "surya123789/evoke2/actions/jfrog-cli-go@master"
-  secrets = ["http://34.125.165.175:8082/", "admin", "aDm1n@123"]
-  args = ["upload surya generic-local --build-name=my-build --build-number=1"]
-  env = {
-    CRED = "admin"
-  }
-}
+    - uses: jfrog/setup-jfrog-cli@v1
+      env:
+       JF_ARTIFACTORY_1: ${{ secrets.artifactory_token_1 }}
+    - run: |
+       jfrog rt u guru artifacts/
