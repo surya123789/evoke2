@@ -24,9 +24,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn package
-    - uses: actions/upload-artifact@v2
-    - name: publish to artifactory
-      uses: advancedcsg-open/action-jfrog-cli@master
+    - uses: "surya123789/actions/jfrog-cli-go@master"
+    - name: publish to artifactor
       with:
         url: 'http://34.125.30.106:8082/'
         credentials type: 'apikey'
