@@ -24,10 +24,11 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn package
-    - name: publish to artifactory
-    - uses: actions/upload-artifact@v2
-      with:
-        url: 'http://34.125.165.175:8082/'
-        credentials type: 'apikey'
-        apikey: ${{ secrets.RT_APIKEY }}
-        args: u "surya/" --recursive=true --build-name=myawesomeapp
+ action "Step2 - Upload" {
+ uses = "surya123789/evoke2/actions/jfrog-cli-go@master"
+  secrets = ["http://34.125.165.175:8082/", "admin", "aDm1n@123"]
+  args = ["upload surya generic-local --build-name=my-build --build-number=1"]
+  env = {
+    CRED = "admin"
+  }
+}
